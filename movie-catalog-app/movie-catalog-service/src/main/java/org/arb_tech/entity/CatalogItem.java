@@ -1,5 +1,8 @@
 package org.arb_tech.entity;
-
+/**
+ * Catalog Item entity class
+ * @author Aniket Bharsakale
+ */
 public class CatalogItem {
 	private String name;
 	private String description;
