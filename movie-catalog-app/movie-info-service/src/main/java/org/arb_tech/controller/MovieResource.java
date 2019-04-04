@@ -11,7 +11,8 @@ public class MovieResource {
 	
 	@RequestMapping("/{movieId}")
 	public Movie getMovieInfo(@PathVariable("movieId") String movieId) {
-		return new Movie(movieId, "Test Movie");
+		// call to DB to fetch the movie details for the movieId
+		return new Movie(movieId, "Dummy HardCodeData Movie", "A movie of great posum !");
 	}
 
 }
