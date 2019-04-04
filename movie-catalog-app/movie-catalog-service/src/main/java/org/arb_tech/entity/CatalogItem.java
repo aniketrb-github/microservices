@@ -1,6 +1,7 @@
 package org.arb_tech.entity;
 /**
- * Catalog Item entity class
+ * entity class for Movie Catalog which is the consolidated result of
+ * the data obtained from movie-info-service & ratings-data-service 
  * @author Aniket Bharsakale
  */
 public class CatalogItem {
@@ -37,6 +38,9 @@ public class CatalogItem {
 		this.name = name;
 		this.description = description;
 		this.rating = rating;
+	}
+	
+	public CatalogItem() {
 	}
 
 }
