@@ -1,7 +1,10 @@
 package org.arb_tech.entity;
 
 import java.util.List;
-
+/**
+ * The View Layer Object for user Ratings 
+ * @author Aniket Bharsakale
+ */
 public class UserRatingVO {
 	private List<Rating> userRating;
 

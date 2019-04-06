@@ -1,7 +1,7 @@
 package org.arb_tech.entity;
 
 /**
- * Movie Rating entity class
+ * entity class for Movie Rating 
  * @author Aniket Bharsakale
  */
 public class Rating {
@@ -28,9 +28,6 @@ public class Rating {
 		super();
 		this.movieId = movieId;
 		this.rating = rating;
-	}
-	
-	public Rating() {
 	}
 
 }
