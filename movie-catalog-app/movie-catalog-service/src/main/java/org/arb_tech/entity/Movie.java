@@ -1,7 +1,8 @@
 package org.arb_tech.entity;
 
 /**
- * entity class for Movie details 
+ * entity class for Movie details
+ * 
  * @author Aniket Bharsakale
  */
 public class Movie {
@@ -38,6 +39,9 @@ public class Movie {
 		this.id = id;
 		this.name = name;
 		this.description = description;
+	}
+
+	public Movie() {
 	}
 
 }
