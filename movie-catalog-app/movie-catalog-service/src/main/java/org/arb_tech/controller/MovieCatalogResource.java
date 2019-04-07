@@ -43,20 +43,20 @@ public class MovieCatalogResource {
 		// s2: get ratings for each movie by invoking the ratings-data-service
 		// step3: compose s1 & s2 together & return the consolidated data back
 		
-		UserRatingVO userRatingVO = restTemplate.getForObject("http://localhost:18083/ratingsdata/users/" + userId, UserRatingVO.class);
+		UserRatingVO userRatingVO = restTemplate.getForObject("http://ratings-data-service/ratingsdata/users/" + userId, UserRatingVO.class);
 
 		return userRatingVO.getUserRating().stream().map(rating -> {
-			Movie movie = restTemplate.getForObject("http://localhost:18082/movies/" + rating.getMovieId(), Movie.class);
-			
-			/* Using WebClient instead of RestTempalte
-			 Movie movie = webClientBuilder.build()
-					.get()
-					.uri("http://localhost:18082/movies/" + rating.getMovieId())
-					.retrieve().bodyToMono(Movie.class)
-					.block();
-			*/
+			Movie movie = restTemplate.getForObject("http://movie-info-service/movies/" + rating.getMovieId(), Movie.class);
 			
 			return new CatalogItem(movie.getName(), movie.getDescription(), rating.getRating());
 		}).collect(Collectors.toList());
 	}
+	
+	/* Using WebClient instead of RestTempalte
+	 Movie movie = webClientBuilder.build()
+			.get()
+			.uri("http://localhost:18082/movies/" + rating.getMovieId())
+			.retrieve().bodyToMono(Movie.class)
+			.block();
+	*/
 }

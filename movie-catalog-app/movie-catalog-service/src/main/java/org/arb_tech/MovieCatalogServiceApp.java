@@ -2,6 +2,7 @@ package org.arb_tech;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
@@ -25,6 +26,7 @@ public class MovieCatalogServiceApp {
 	 * Hence, we can auto-wire these beans, ie request the spring container to inject them where we want
 	*/
 	@Bean
+	@LoadBalanced
 	public RestTemplate getRestTemplate () {
 		return  new RestTemplate();
 	}
