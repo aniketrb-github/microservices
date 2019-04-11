@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.WebClient;
 
 /**
  * MovieCatalogResource acts as the controller for movie-catalog-service
@@ -30,8 +29,10 @@ public class MovieCatalogResource {
 	@Autowired
 	private RestTemplate restTemplate;
 	
+	/*
 	@Autowired
 	private WebClient.Builder webClientBuilder;
+	*/
 	
 	/**
 	 * Controller which returns a list of Movie Catalog Resources
@@ -61,7 +62,9 @@ public class MovieCatalogResource {
 		return movieCatalogVO;
 	}
 	
-	/* Using WebClient instead of RestTempalte
+	/*
+	// We can use WebClient instead of RestTempalte
+
 	 Movie movie = webClientBuilder.build()
 			.get()
 			.uri("http://localhost:18082/movies/" + rating.getMovieId())
