@@ -1,5 +1,9 @@
 package org.arb_tech.entity;
 
+/**
+ * Movie entity class 
+ * @author Aniket Bharsakale
+ */
 public class Movie {
 	private String id;
 	private String name;
