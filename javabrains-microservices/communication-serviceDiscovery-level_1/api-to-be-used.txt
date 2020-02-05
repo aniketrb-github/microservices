@@ -1,0 +1,14 @@
+
+http://127.0.0.1:8081/catalog/nexsus@62
+http://localhost:8082/movie/1550
+http://127.0.0.1:8083/ratingsdata/312
+http://localhost:8083/ratingsdata/users/nexus@14
+https://api.themoviedb.org/3/movie/1550?api_key={your_API-KEY-HERE}
+
+Go to Eureka Root Directory & execute either of following maven command:
+>mvn package 
+OR
+>mvn install 
+
+then from root itself execute the following command which starts the eureka server
+>java -jar target/eureka-discovery-server-0.0.1-SNAPSHOT.jar
