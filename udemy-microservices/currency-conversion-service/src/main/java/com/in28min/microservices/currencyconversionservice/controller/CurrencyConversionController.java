@@ -32,7 +32,7 @@ public class CurrencyConversionController {
 		ConvertedCurrency convertedCurrency = null;
 		
 		ExchangeValue exchangeValue = restTemplate.getForObject(
-				"http://currency-exchange-service/currency-exchange/from/" + from + "/to/" + to, ExchangeValue.class);
+				"http://localhost:8000/currency-exchange/from/" + from + "/to/" + to, ExchangeValue.class);
 
 		if (null != exchangeValue) {
 			convertedCurrency = new ConvertedCurrency();
