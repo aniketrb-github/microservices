@@ -2,16 +2,29 @@ package com.in28min.microservices.currencyexchangeservice.bean;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * Model class for Currency Exchange value
  *
  * @author Aniket Bharsakale
  */
+@Entity
 public class ExchangeValue {
+	@Id
 	private Long id;
+	
+	@Column(name = "currency_from")
 	private String from;
+	
+	@Column(name = "currency_to")
 	private String to;
+	
 	private BigDecimal conversionMultiple;
+	
+	@Column(name = "port")
 	private int appPort;
 
 	public ExchangeValue(Long id, String from, String to, BigDecimal conversionMultiple) {
