@@ -35,7 +35,7 @@ public class CurrencyExchangeController {
 	 * 
 	 * @param from is the source currency from which currency will be converted 
 	 * @param to is the target currency into which currency will be converted
-	 * @return
+	 * @return the currency-exchange-model object
 	 */
 	@GetMapping(value = "/from/{from}/to/{to}")
 	public ExchangeValue retrieveExchangeValue(@PathVariable String from, @PathVariable String to) {
