@@ -1,6 +1,8 @@
 package com.in28min.microservices.currencyconversionservice.controller;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -12,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.in28min.microservices.currencyconversionservice.bean.CurrencyConversionBean;
 import com.in28min.microservices.currencyconversionservice.bean.ExchangeValue;
+import com.in28min.microservices.currencyconversionservice.feign.CurrencyExchangeProxy;
 
 /**
  * Main rest end-point for currency-conversion-service
@@ -27,6 +30,9 @@ public class CurrencyConversionController {
 	
 	@Autowired
 	private Environment environment;
+	
+	@Autowired
+	private CurrencyExchangeProxy currencyExchangeProxy;
 
 	/**
 	 * API: http://localhost:8100/currency-converter/from/AUD/to/INR/amount/1000
@@ -41,9 +47,20 @@ public class CurrencyConversionController {
 			@PathVariable BigDecimal amount) {
 
 		CurrencyConversionBean currencyBean = null;
+		ExchangeValue exchangeValue = null;
 		
-		ExchangeValue exchangeValue = restTemplate.getForObject(
-				"http://localhost:8000/currency-exchange/from/" + from + "/to/" + to, ExchangeValue.class);
+		// Service invocation using RestTemplate
+		/*
+		 * Map<String, String> uriVariablesMap = new HashMap<>();
+		 * uriVariablesMap.put("from", from); uriVariablesMap.put("to", to);
+		 * 
+		 * exchangeValue =
+		 * restTemplate.getForObject("http://localhost:8000/currency-exchange/from/" +
+		 * from + "/to/" + to, ExchangeValue.class, uriVariablesMap);
+		 */
+		
+		// Service invocation using Feign Rest Client
+		exchangeValue = currencyExchangeProxy.retrieveExchangeValue(from, to);
 
 		if (null != exchangeValue) {
 			currencyBean = new CurrencyConversionBean();
