@@ -67,7 +67,7 @@ public class CurrencyConversionController {
 			currencyBean.setTo(exchangeValue.getTo());
 			currencyBean.setFrom(exchangeValue.getFrom());
 			currencyBean.setId(exchangeValue.getId());
-			currencyBean.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
+			currencyBean.setPort(exchangeValue.getAppPort());
 			currencyBean.setConversionMultiple(exchangeValue.getConversionMultiple());
 			currencyBean.setQuantity(amount);
 			
