@@ -1,5 +1,6 @@
 package com.in28min.microservices.currencyconversionservice.feign;
 
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,12 +15,15 @@ import com.in28min.microservices.currencyconversionservice.bean.ExchangeValue;
  * @author Aniket Bharsakale
  */
 
-@FeignClient(name = "currency-exchange-service", url = "localhost:8000")
+// @FeignClient(name = "currency-exchange-service", url = "localhost:8000")
+@FeignClient(name = "currency-exchange-service")
+@RibbonClient(name = "currency-exchange-service")
 public interface CurrencyExchangeProxy {
 
 	/**
 	 * name: is the name of the target micro-service with which communication is to be done.
-	 * url : is the URL on which the target micro-service is hosted upon 
+	 * url : is the URL on which the target micro-service is hosted upon
+	 *  
 	 */
 	
 	
