@@ -7,6 +7,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import brave.sampler.Sampler;
+
 @SpringBootApplication
 @EnableFeignClients("com.in28min.microservices.currencyconversionservice")
 @EnableDiscoveryClient // making this application as an client for eureka server
@@ -19,6 +21,14 @@ public class CurrencyConversionServiceApplication {
 	@Bean
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
+	}
+	
+	/**
+	 * Spring cloud sleuth tracing for API requests accross multiple modules 
+	 */
+	@Bean
+	public Sampler defaultSampler() {
+		return Sampler.ALWAYS_SAMPLE;
 	}
 
 }
