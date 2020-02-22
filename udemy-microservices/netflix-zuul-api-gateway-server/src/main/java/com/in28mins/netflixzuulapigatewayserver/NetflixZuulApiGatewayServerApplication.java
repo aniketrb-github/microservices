@@ -8,8 +8,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  * Netflix Zuul API Gateway server
  * @author Aniket Bharsakale 
  */
-@EnableZuulProxy
-@EnableEurekaClient
+@EnableZuulProxy	// To make itself the ZUUL API Gateway Server
+@EnableEurekaClient	// TO register itself with Eureka Server Registry
 @SpringBootApplication
 public class NetflixZuulApiGatewayServerApplication {
 

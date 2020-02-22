@@ -19,13 +19,16 @@ public class ZuulLoggingFilter extends ZuulFilter {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	/**
-	 * should this filter be executed for every request or not.
+	 * should this filter be executed for every request or not(true/false)
 	 */
 	@Override
 	public boolean shouldFilter() {
 		return true;
 	}
 
+	/**
+	 * Here, do the actual logging using the API request context
+	 */
 	@Override
 	public Object run() throws ZuulException {
 		HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
@@ -43,6 +46,9 @@ public class ZuulLoggingFilter extends ZuulFilter {
 		return "pre";
 	}
 
+	/**
+	 * Provide the order with the return type as a int number 1,2,3...
+	 */
 	@Override
 	public int filterOrder() {
 		return 1;
