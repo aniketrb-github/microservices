@@ -8,13 +8,25 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  * Netflix Zuul API Gateway server
  * @author Aniket Bharsakale 
  */
+import org.springframework.context.annotation.Bean;
+
+import brave.sampler.Sampler;
+
 @EnableZuulProxy	// To make itself the ZUUL API Gateway Server
-@EnableEurekaClient	// TO register itself with Eureka Server Registry
+@EnableEurekaClient	// To register itself with Eureka Server Registry
 @SpringBootApplication
 public class NetflixZuulApiGatewayServerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(NetflixZuulApiGatewayServerApplication.class, args);
+	}
+	
+	/**
+	 * Spring cloud sleuth tracing for API requests accross multiple modules 
+	 */
+	@Bean
+	public Sampler defaultSampler() {
+		return Sampler.ALWAYS_SAMPLE;
 	}
 
 }
