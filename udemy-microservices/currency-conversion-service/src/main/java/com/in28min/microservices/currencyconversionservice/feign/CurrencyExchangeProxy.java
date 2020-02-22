@@ -15,20 +15,26 @@ import com.in28min.microservices.currencyconversionservice.bean.ExchangeValue;
  * @author Aniket Bharsakale
  */
 
-// @FeignClient(name = "currency-exchange-service", url = "localhost:8000")
 @FeignClient(name = "netflix-zuul-api-gateway-server")
 @RibbonClient(name = "currency-exchange-service")
+//@FeignClient(name = "currency-exchange-service", URL = "localhost:8000")
 public interface CurrencyExchangeProxy {
 
 	/**
+	 * @RibbonClient
 	 * name: is the name of the target micro-service with which communication is to be done.
-	 * url : is the URL on which the target micro-service is hosted upon
-	 *  
+	 * URL : is the URL on which the target micro-service is hosted upon
+	 * 
+	 * @FeignClient this Proxy will communicate with ZUUL API Gateway server
+	 * i.e. when the endpoint of CCS is invoked then 
+	 * the Routing will happen as follows: 
+	 * endUser -> CCS -> ZUUL -> EUREKA -> CES -> CCS -> endUser 
 	 */
 	
 	
 	/**
-	 * Below is the copied-pasted method signature from the 'currency-exchange-service' - rest end-point with which we will be communicating
+	 * Below is the copied-pasted method signature from the CES
+	 * Its the rest end-point with which we will be communicating from CCS
 	 */
 	@GetMapping(value = "/currency-exchange-service/currency-exchange/from/{from}/to/{to}")
 	public ExchangeValue retrieveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to);
