@@ -1,8 +1,6 @@
 package com.in28min.microservices.currencyconversionservice.controller;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -24,12 +22,6 @@ import com.in28min.microservices.currencyconversionservice.feign.CurrencyExchang
 @RestController
 @RequestMapping(value = "/currency-converter")
 public class CurrencyConversionController {
-
-	@Autowired
-	private RestTemplate restTemplate;
-	
-	@Autowired
-	private Environment environment;
 	
 	@Autowired
 	private CurrencyExchangeProxy currencyExchangeProxy;
@@ -48,16 +40,6 @@ public class CurrencyConversionController {
 
 		CurrencyConversionBean currencyBean = null;
 		ExchangeValue exchangeValue = null;
-		
-		// Service invocation using RestTemplate
-		/*
-		 * Map<String, String> uriVariablesMap = new HashMap<>();
-		 * uriVariablesMap.put("from", from); uriVariablesMap.put("to", to);
-		 * 
-		 * exchangeValue =
-		 * restTemplate.getForObject("http://localhost:8000/currency-exchange/from/" +
-		 * from + "/to/" + to, ExchangeValue.class, uriVariablesMap);
-		 */
 		
 		// Service invocation using Feign Rest Client
 		exchangeValue = currencyExchangeProxy.retrieveExchangeValue(from, to);
