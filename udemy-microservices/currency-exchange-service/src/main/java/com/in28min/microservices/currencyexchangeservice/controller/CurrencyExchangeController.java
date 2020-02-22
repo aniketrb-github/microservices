@@ -1,5 +1,7 @@
 package com.in28min.microservices.currencyexchangeservice.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,8 @@ import com.in28min.microservices.currencyexchangeservice.repository.ExchangeValu
 @RequestMapping(value = "/currency-exchange")
 public class CurrencyExchangeController {
 
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private Environment environment;
 	
@@ -41,10 +45,8 @@ public class CurrencyExchangeController {
 	public ExchangeValue retrieveExchangeValue(@PathVariable String from, @PathVariable String to) {
 		ExchangeValue value = null;
 		value = exchangeValueService.retrieveExchangeValue(from, to);
-		
-		// value = new ExchangeValue(1000L, from, to, BigDecimal.valueOf(65));
-		
 		value.setAppPort(Integer.parseInt(environment.getProperty("local.server.port")));
+		logger.info("{}" + value);
 		return value;
 	}
 }
