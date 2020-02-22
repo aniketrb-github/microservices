@@ -16,7 +16,7 @@ import com.in28min.microservices.currencyconversionservice.bean.ExchangeValue;
  */
 
 // @FeignClient(name = "currency-exchange-service", url = "localhost:8000")
-@FeignClient(name = "currency-exchange-service")
+@FeignClient(name = "netflix-zuul-api-gateway-server")
 @RibbonClient(name = "currency-exchange-service")
 public interface CurrencyExchangeProxy {
 
@@ -30,6 +30,6 @@ public interface CurrencyExchangeProxy {
 	/**
 	 * Below is the copied-pasted method signature from the 'currency-exchange-service' - rest end-point with which we will be communicating
 	 */
-	@GetMapping(value = "/currency-exchange/from/{from}/to/{to}")
+	@GetMapping(value = "/currency-exchange-service/currency-exchange/from/{from}/to/{to}")
 	public ExchangeValue retrieveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to);
 }
