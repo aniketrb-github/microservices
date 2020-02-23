@@ -47,10 +47,22 @@
 			<optional>true</optional>
 		</dependency>
 		
-		<!-- Spring Cloud Sleuth -->
+		<!-- Spring Cloud Sleuth: Generates & assigns an unique ID for API requests -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+		
+		<!-- Rabbit MQ: uses the AMQP protocol -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+		</dependency>
+		
+		<!-- Sleuth Zipkin Tracer for RabbitMQ -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
 		</dependency>
 		
 		<dependency>
