@@ -41,14 +41,19 @@
 		
 		<!-- Rabbit MQ: uses the AMQP protocol -->
 		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit</artifactId>
+			<!-- 
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+			 -->
 		</dependency>
 		
 		<!-- Sleuth Zipkin Tracer for RabbitMQ -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId> 
+			<!-- <artifactId>spring-cloud-starter-zipkin</artifactId> -->
 		</dependency>
 		
 		<!-- Netflix Eureka Naming Client -->
