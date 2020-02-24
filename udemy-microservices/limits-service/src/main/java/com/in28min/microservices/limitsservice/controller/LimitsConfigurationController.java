@@ -31,4 +31,23 @@ public class LimitsConfigurationController {
 		logger.info("{}" + configuration);
 		return limitConfiguration;
 	}
+	
+	/*
+Here, each time u have to execute /actuator/refresh for each instanct i.e 8080, 8081, 8082 etc . . .
+So as to make all instances of the limits-service in sync with the changes done in the Git Repo
+POST: http://localhost:8080/actuator/refresh
+GET : http://localhost:8080/limits
+
+POST: http://localhost:8081/actuator/refresh
+GET: http://localhost:8081/limits
+
+POST: http://localhost:8082/actuator/refresh
+GET: http://localhost:8082/limits
+-------------------------------------------------------------------------------
+// This will refresh the cache of all instances of limits-service at once
+POST: http://localhost:8080/actuator/bus-refresh
+GET: http://localhost:8082/limits	
+GET: http://localhost:8081/limits
+
+	*/
 }
