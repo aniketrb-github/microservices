@@ -13,7 +13,8 @@
 	<artifactId>limits-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>limits-service</name>
-	<description>Spring-boot project for microservice: limits-service</description>
+	<description>Spring-boot project for microservice: limits-service
+	</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -23,13 +24,11 @@
 	<dependencies>
 		<!-- Rabbit MQueue: uses the AMQP protocol -->
 		<dependency>
-			<!-- When using this maven dep. the URL: http://localhost:8080/actuator/bus-refresh does not work.
-			<groupId>org.springframework.amqp</groupId>
-			<artifactId>spring-rabbit</artifactId>
-			 -->
+			<!-- When using this maven dep. the URL: http://localhost:8080/actuator/bus-refresh 
+				does not work. <groupId>org.springframework.amqp</groupId> <artifactId>spring-rabbit</artifactId> -->
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
-			 
+
 		</dependency>
 
 		<dependency>
@@ -43,6 +42,13 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+
+		<!-- Fault Tolerance using HystSrix -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
+			<version>1.4.7.RELEASE</version>
 		</dependency>
 
 		<!-- Netflix Eureka Naming Client -->
