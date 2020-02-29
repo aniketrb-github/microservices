@@ -29,4 +29,10 @@ public class MovieCatalogServiceApplication {
 		return new RestTemplate();
 	}
 	
+	/**
+	 * Hystrix Dashboard: http://localhost:8081/hystrix
+	 * URL to monitor: http://localhost:8081/actuator/hystrix.stream
+	 * Click button: Monitor Stream
+	 */
+	
 }
