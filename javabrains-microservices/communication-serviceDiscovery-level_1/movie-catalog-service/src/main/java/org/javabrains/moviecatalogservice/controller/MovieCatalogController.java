@@ -1,5 +1,6 @@
 package org.javabrains.moviecatalogservice.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 /**
  * Controller for Movie Catalog
- * @author abharsakale
+ * 
+ * @author Aniket Bharsakale
  *
  */
 @RestController
@@ -24,6 +28,9 @@ public class MovieCatalogController {
 	@Autowired
 	private RestTemplate restTemplate;
 	
+	// http://localhost:8081/catalog/14112
+
+	@HystrixCommand(fallbackMethod = "getCatalogFallback") // Tells Hystrix to break circuits from this point
 	@RequestMapping("/{userId}")
 	public List<CatalogItem> getCatalog(@PathVariable String userId) {
 		
@@ -43,5 +50,9 @@ public class MovieCatalogController {
 		 
 		
 		return catalogItems;
+	}
+	
+	public List<CatalogItem> getCatalogFallback(@PathVariable String userId) {
+		return Arrays.asList(new CatalogItem("No Movie", 0, "No Movie Description"));
 	}
 }
