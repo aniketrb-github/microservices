@@ -1,5 +1,8 @@
 package org.javabrains.movieinfoservice.model;
-
+/**
+ * View Object for Movie Summary to be returned to client
+ * @author Aniket Bharsakale
+ */
 public class MovieSummary {
 
 	private String id;
