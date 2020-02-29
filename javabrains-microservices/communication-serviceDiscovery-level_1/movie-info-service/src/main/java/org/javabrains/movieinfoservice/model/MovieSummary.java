@@ -29,4 +29,10 @@ public class MovieSummary {
 	public void setOverview(String overview) {
 		this.overview = overview;
 	}
+
+	@Override
+	public String toString() {
+		return "MovieSummary [id=" + id + ", title=" + title + ", overview=" + overview + "]";
+	}
+	
 }
