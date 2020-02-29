@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 /**
- * Service class impl for User Ratings for a Movie
+ * Service class implementation for User Ratings for a Movie
  * 
  * @author Aniket Bharsakale
  */
@@ -26,7 +27,14 @@ public class UserRatingInfoService {
 	 * @param userId is the user identifier
 	 * @return userRatingTO containing the user ratings for all the movies he has watched.
 	 */
-	@HystrixCommand(fallbackMethod = "getUserRatingFallback")
+	@HystrixCommand(fallbackMethod = "getUserRatingFallback",
+			commandProperties = {
+					@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000" ),
+					@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
+					@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50"),
+					@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000")
+			}
+	)
 	public UserRatingsTO getUserRating(@PathVariable("userId") String userId) {
 		UserRatingsTO userRatingsTO = restTemplate.getForObject("http://ratings-data-service/ratingsdata/users/"+userId, UserRatingsTO.class);
 		return userRatingsTO;
