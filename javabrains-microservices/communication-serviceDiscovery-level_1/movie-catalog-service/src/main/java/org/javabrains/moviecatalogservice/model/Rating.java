@@ -1,5 +1,9 @@
 package org.javabrains.moviecatalogservice.model;
-
+/**
+ * Model class for Rating
+ * 
+ * @author Aniket Bharsakale
+ */
 public class Rating {
 	private int movieId;
 	private float movieRating;

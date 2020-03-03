@@ -3,7 +3,7 @@ package org.javabrains.moviecatalogservice.model;
 import java.util.List;
 
 /**
- * acts as the transfer object for view layer
+ * Transfer object/Model for User Ratings
  * 
  * @author Aniket Bharsakale
  */

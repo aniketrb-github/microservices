@@ -1,5 +1,9 @@
 package org.javabrains.moviecatalogservice.model;
-
+/**
+ * Model class for Catalog Item
+ * 
+ * @author Aniket Bharsakale
+ */
 public class CatalogItem {
 
 	private String movieName;

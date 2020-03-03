@@ -1,5 +1,9 @@
 package org.javabrains.moviecatalogservice.model;
-
+/**
+ * Model class for Movie
+ * 
+ * @author Aniket Bharsakale
+ */
 public class Movie {
 	private int id;
 	private String name;
