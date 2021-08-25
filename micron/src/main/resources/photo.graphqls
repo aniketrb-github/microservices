@@ -1,0 +1,16 @@
+schema{
+    query: Query
+}
+
+type Query{
+    getAllPhotos : [PhotoResponseDto]
+    getPhotoById(id: Int) : PhotoResponseDto
+}
+
+type PhotoResponseDto{
+    albumId: Int
+    id: Int
+    title: String
+    url: String
+    thumbnailUrl: String
+}

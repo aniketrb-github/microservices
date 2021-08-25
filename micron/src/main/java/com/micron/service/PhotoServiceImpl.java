@@ -17,4 +17,11 @@ public class PhotoServiceImpl implements IPhotoService {
     public List<PhotoResponseDto> getPhotos(){
         return photoClient.getPhotos();
     }
+
+    @Override
+    public PhotoResponseDto getPhotoById(Integer id) {
+        return photoClient.getPhotoById(id);
+    }
+
+
 }

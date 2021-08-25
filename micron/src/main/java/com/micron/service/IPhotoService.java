@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IPhotoService {
     public List<PhotoResponseDto> getPhotos();
+
+    public PhotoResponseDto getPhotoById(Integer id);
 }
