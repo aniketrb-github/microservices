@@ -23,6 +23,17 @@ curl --location --request POST 'http://localhost:8080/micron/getPhotoById' \
     }
 }'
 
+curl --location --request POST 'http://localhost:8080/micron/getAllPhotos' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+    getAllPhotos{
+        id
+        albumId        
+        url
+		thumbnailUrl
+    }
+}'
+
 - cURL for getting list of all photos - POST API to GET ALL PHOTOS using GRAPHQL
 
 curl --location --request POST 'http://localhost:8080/micron/getAllPhotos' \
@@ -35,6 +46,15 @@ curl --location --request POST 'http://localhost:8080/micron/getAllPhotos' \
     }
 }'
 
+curl --location --request POST 'http://localhost:8080/micron/getAllPhotos' \
+--header 'Content-Type: text/plain' \
+--data-raw '{
+    getAllPhotos{
+        id
+        albumId
+        url
+    }
+}'
 
 - cURL for getting list of al photos(REGULAR GET API)
 
