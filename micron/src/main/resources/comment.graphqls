@@ -1,0 +1,17 @@
+schema{
+    query: Query
+}
+
+type Query{
+    getAllComments : [CommentResponseDto]
+    getCommentsByPostId(postId: Int) : [CommentResponseDto]
+    getCommentById(id: Int) : CommentResponseDto
+}
+
+type CommentResponseDto {
+    postId: Int
+    id: Int
+    name: String
+    email: String
+    body: String
+}

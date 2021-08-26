@@ -17,4 +17,9 @@ public class UserServiceImpl implements IUserService {
     public List<UserResponseDto> getUsers() {
         return userClient.getUsers();
     }
+
+    @Override
+    public UserResponseDto getUserByEmail(String email) {
+        return userClient.getUserByEmail(email);
+    }
 }

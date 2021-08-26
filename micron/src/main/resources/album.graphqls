@@ -1,0 +1,15 @@
+schema{
+    query: Query
+}
+
+type Query{
+    getAllAlbums : [AlbumResponseDto]
+    getAlbumsByUserId(userId: Int) : [AlbumResponseDto]
+    getAlbumById(id: Int) : AlbumResponseDto
+}
+
+type AlbumResponseDto {
+    userId: Int
+    id: Int
+    title: String
+}

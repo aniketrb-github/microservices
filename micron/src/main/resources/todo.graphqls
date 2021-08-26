@@ -1,0 +1,16 @@
+schema{
+    query: Query
+}
+
+type Query{
+    getAllTodos : [TodoResponseDto]
+    getTodosByUserId(userId: Int) : [TodoResponseDto]
+    getTodoById(id: Int) : TodoResponseDto
+}
+
+type TodoResponseDto {
+    userId: Int
+    id: Int
+    title: String
+    completed: Boolean
+}

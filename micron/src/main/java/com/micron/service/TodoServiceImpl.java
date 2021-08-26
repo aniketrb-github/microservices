@@ -1,9 +1,7 @@
 package com.micron.service;
 
 import com.micron.client.ITodoClient;
-import com.micron.client.IUserClient;
 import com.micron.dto.TodoResponseDto;
-import com.micron.dto.UserResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,17 @@ public class TodoServiceImpl implements ITodoService {
     private ITodoClient todoClient;
 
     @Override
-    public List<TodoResponseDto> getTodos(){
-        return todoClient.getTodos();
+    public List<TodoResponseDto> getAllTodos(){
+        return todoClient.getAllTodos();
+    }
+
+    @Override
+    public List<TodoResponseDto> getTodosByUserId(Integer userId) {
+        return todoClient.getTodosByUserId(userId);
+    }
+
+    @Override
+    public TodoResponseDto getTodoById(Integer id) {
+        return todoClient.getTodoById(id);
     }
 }

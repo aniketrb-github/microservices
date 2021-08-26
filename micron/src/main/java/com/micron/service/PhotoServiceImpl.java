@@ -14,8 +14,13 @@ public class PhotoServiceImpl implements IPhotoService {
     private IPhotoClient photoClient;
 
     @Override
-    public List<PhotoResponseDto> getPhotos(){
-        return photoClient.getPhotos();
+    public List<PhotoResponseDto> getAllPhotos(){
+        return photoClient.getAllPhotos();
+    }
+
+    @Override
+    public List<PhotoResponseDto> getPhotosByAlbumId(Integer albumId){
+        return photoClient.getPhotosByAlbumId(albumId);
     }
 
     @Override

@@ -1,8 +1,5 @@
 package com.micron.controller;
 
-import com.micron.client.IAlbumClient;
-import com.micron.client.IPhotoClient;
-import com.micron.dto.AlbumResponseDto;
 import com.micron.dto.PhotoResponseDto;
 import com.micron.service.IPhotoService;
 import graphql.ExecutionResult;
@@ -50,23 +47,34 @@ public class PhotoController {
     // Wiring the DTO with GraphQL File
     private RuntimeWiring buildWiring() {
         DataFetcher<List<PhotoResponseDto>> fetcher1 = data -> {
-            return (List<PhotoResponseDto>) photoService.getPhotos();
+            return (List<PhotoResponseDto>) photoService.getAllPhotos();
         };
 
-        DataFetcher<PhotoResponseDto> fetcher2 = data -> {
+        DataFetcher<List<PhotoResponseDto>> fetcher2 = data -> {
+            return (List<PhotoResponseDto>) photoService.getPhotosByAlbumId(data.getArgument("albumId"));
+        };
+
+        DataFetcher<PhotoResponseDto> fetcher3 = data -> {
             return photoService.getPhotoById(data.getArgument("id"));
         };
 
         return RuntimeWiring.newRuntimeWiring().type("Query",
                 typeWriting -> typeWriting
                         .dataFetcher("getAllPhotos", fetcher1)
-                        .dataFetcher("getPhotoById", fetcher2))
-                        .build();
+                        .dataFetcher("getPhotosByAlbumId", fetcher2)
+                        .dataFetcher("getPhotoById", fetcher3))
+                .build();
     }
 
     // GraphQL Supported POST API - TO GET DATA - GET ALL PHOTOS
     @PostMapping("/getAllPhotos")
     public ResponseEntity<Object> getAllPhotos(@RequestBody String query) {
+        ExecutionResult result = graphQL.execute(query);
+        return new ResponseEntity<Object>(result, HttpStatus.OK);
+    }
+
+    @PostMapping("/getPhotosByAlbumId")
+    public ResponseEntity<Object> getPhotosByAlbumId(@RequestBody String query) {
         ExecutionResult result = graphQL.execute(query);
         return new ResponseEntity<Object>(result, HttpStatus.OK);
     }
@@ -80,7 +88,19 @@ public class PhotoController {
 
     // REGULAR GET API CALL
     @GetMapping("/photos")
-    public List<PhotoResponseDto> getPhotos(){
-        return photoService.getPhotos();
+    public List<PhotoResponseDto> getAllPhotos() {
+        return photoService.getAllPhotos();
+    }
+
+    // REGULAR GET API CALL
+    @GetMapping("/albums/{albumId}/photos")
+    public List<PhotoResponseDto> getPhotosByAlbumId(@PathVariable Integer albumId) {
+        return photoService.getPhotosByAlbumId(albumId);
+    }
+
+    // REGULAR GET API CALL
+    @GetMapping("/photos/{id}")
+    public PhotoResponseDto getPhotoById(@PathVariable Integer id) {
+        return photoService.getPhotoById(id);
     }
 }

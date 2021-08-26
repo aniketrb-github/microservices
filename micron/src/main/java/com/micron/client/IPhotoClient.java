@@ -11,7 +11,10 @@ import java.util.List;
 public interface IPhotoClient {
 
     @GetMapping("/photos")
-    public List<PhotoResponseDto> getPhotos();
+    public List<PhotoResponseDto> getAllPhotos();
+
+    @GetMapping("/albums/{albumId}/photos")
+    public List<PhotoResponseDto> getPhotosByAlbumId(@PathVariable Integer albumId);
 
     @GetMapping("/photos/{id}")
     public PhotoResponseDto getPhotoById(@PathVariable Integer id);
