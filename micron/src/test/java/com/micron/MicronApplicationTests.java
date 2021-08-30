@@ -2,7 +2,11 @@ package com.micron;
 
 import com.micron.controller.UserController;
 import com.micron.service.IUserService;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -11,6 +15,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 class MicronApplicationTests {
 
+    public static Logger logger = LoggerFactory.getLogger(MicronApplicationTests.class);
+    @Test
+    public void contextLoads() {
+        Assertions.assertEquals(true, true);
+        logger.info("Test Method - contextLoads() executed!");
+    }
+/*
     @Autowired
 	private IUserService userService;
 
@@ -19,7 +30,6 @@ class MicronApplicationTests {
 
 	// Expected to mock the calls going to Repository/Database
 	// Test Failure
-	/*
 	@Test
 	public void getUsers() {
 		// We need to avoid calling the actual call to Repository/3rd party API
